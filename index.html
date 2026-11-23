@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Pic Photo Editor</title>
+<meta name="description" content="Edit your photos: looks, light, colour, crop and text.">
+<meta name="theme-color" content="#111214">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Pic">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Playfair+Display:wght@700&family=Pacifico&family=Bebas+Neue&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<!-- start screen -->
+<section id="home" class="home">
+  <header class="hbar"><span class="logo"><i></i>Pic</span></header>
+  <div class="hero">
+    <h1>Make every photo look its best.</h1>
+    <p class="soft">Looks, light, colour, crop and text. Everything stays on your phone.</p>
+    <label class="cta" for="file"><svg viewBox="0 0 24 24" class="i"><path d="M12 16V4M6 10l6-6 6 6M4 20h16"/></svg>Open a photo</label>
+  </div>
+  <h2 id="recentH" hidden>Recent edits</h2>
+  <div class="recent" id="recent"></div>
+</section>
+
+<!-- editor -->
+<section id="editor" class="editor" hidden>
+  <header class="ebar">
+    <button class="ib" id="back" aria-label="Back to photos"><svg viewBox="0 0 24 24" class="i"><path d="M15 5l-7 7 7 7"/></svg></button>
+    <span class="grow"></span>
+    <button class="ib" id="undo" aria-label="Undo"><svg viewBox="0 0 24 24" class="i"><path d="M9 14L4 9l5-5"/><path d="M4 9h10a6 6 0 0 1 0 12h-3"/></svg></button>
+    <button class="ib" id="redo" aria-label="Redo"><svg viewBox="0 0 24 24" class="i"><path d="M15 14l5-5-5-5"/><path d="M20 9H10a6 6 0 0 0 0 12h3"/></svg></button>
+    <button class="ib" id="compare" aria-label="Hold to see the original"><svg viewBox="0 0 24 24" class="i"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M12 4v16"/><path d="M12 4h9v16h-9z" fill="currentColor" stroke="none" opacity=".35"/></svg></button>
+    <button class="save" id="save">Save</button>
+  </header>
+  <div class="stage" id="stage">
+    <div class="frame" id="frame"><canvas id="cv"></canvas><div class="texts" id="texts"></div><div class="crop" id="crop" hidden><i class="h tl"></i><i class="h tr"></i><i class="h bl"></i><i class="h br"></i><b class="grid"></b></div></div>
+    <div class="badge" id="badge" hidden>Original</div>
+  </div>
+  <div class="panel" id="panel"></div>
+  <nav class="tools" id="tools" role="tablist" aria-label="Tools"></nav>
+</section>
+
+<div class="sheet" id="sheet" hidden><div class="scrim" id="scrim"></div><div class="card" id="sheetc" role="dialog" aria-modal="true"></div></div>
+<div class="toast" id="toast" hidden role="status"></div>
+<input type="file" id="file" accept="image/*" hidden>
+<script type="module" src="app.js"></script>
+</body>
+</html>
