@@ -104,6 +104,7 @@ document.addEventListener('keydown',e=>{if($('editor').hidden||e.target.tagName=
   if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='z'){e.preventDefault();go(e.shiftKey?1:-1)}
   if(e.key===' '&&!e.repeat){e.preventDefault();holdOn()}});
 document.addEventListener('keyup',e=>{if(e.key===' ')holdOff()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('sheet').hidden)closeSheet()});
 
 /* ================= tools & panel ================= */
 const TOOLS=[['looks','Looks'],['adjust','Adjust'],['color','Colour'],['effects','Effects'],['crop','Crop'],['text','Text']];

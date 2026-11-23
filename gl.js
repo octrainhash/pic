@@ -60,7 +60,7 @@ void main(){
   c += c*highlights*.5*hiM;
   c += (shadows*.45)*shM*(1.-c)*.9;
   c = mix(c, c+ (whites*.25), smoothstep(.55,1.,L));
-  c = mix(c, c+ (blacks*.18), 1.-smoothstep(0.,.35,L));
+  c = mix(c, c+ (blacks*.3), 1.-smoothstep(0.,.45,L));
   c = pow(max(c,0.), vec3(1./(1.+brightness*.55)));
   c = (c-.5)*(1.+contrast*.75)+.5;
   c = clamp(c,0.,1.);
@@ -77,10 +77,10 @@ void main(){
   for(int i=0;i<8;i++){ float d=abs(h.x*360.-centers[i]); d=min(d,360.-d); float w=max(0.,1.-d/45.); w=w*w*(3.-2.*w);
     dh+=hslH[i]*w; ds+=hslS[i]*w; dl+=hslL[i]*w; wsum+=w; }
   float sw = smoothstep(.02,.25,h.y);
-  h.x = fract(h.x + dh*30./360.*sw);
+  h.x = fract(h.x + dh*60./360.*sw);
   h.y = clamp(h.y*(1.+ds*sw),0.,1.);
   vec3 c2 = hsl2rgb(h);
-  c2 += dl*.25*sw*h.y;
+  c2 = mix(c2, dl>0.? mix(c2,vec3(1.),dl*.55) : c2*(1.+dl*.6), sw*smoothstep(0.,.4,h.y));
   c = clamp(c2,0.,1.);
   // look: curves + split tone + mono
   vec3 graded = vec3(texture(lut,vec2(c.r,.5)).r, texture(lut,vec2(c.g,.5)).g, texture(lut,vec2(c.b,.5)).b);
